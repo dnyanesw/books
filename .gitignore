@@ -1,0 +1,12 @@
+.DS_Store
+.idea/
+__pycache__/
+*.pyc
+*.db
+.env
+temp/
+data/
+*.conf
+firebase_account_key.json
+stg_firebase_account_key.json
+prod_firebase_account_key.json

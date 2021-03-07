@@ -1,0 +1,53 @@
+version: "3.7"
+
+services:
+
+  redis:
+    restart: always
+    image: redis:latest
+
+  flask:
+    build: .
+    container_name: eprocessify-backend
+    restart: always
+    expose:
+      - 8080
+    ports:
+      - '8080:8080'
+    links:
+      - redis
+    depends_on:
+      - postgres
+      - redis
+
+  celery:
+    build: .
+    restart: always
+    volumes:
+      - .:/src
+    container_name: celery-container
+    command: pipenv run celery -A libs.tasks.celery worker -l info -c 5 -E
+    links:
+      - redis
+
+  postgres:
+    restart: always
+    image: 'postgres:11.8-alpine'
+    ports:
+      - '5401:5432'
+    environment:
+      # To avoid the following error:
+      #
+      #   Error: Database is uninitialized and superuser password is not
+      #   specified.  You must specify POSTGRES_PASSWORD for the superuser. Use
+      #   "-e POSTGRES_PASSWORD=password" to set it in "docker run".
+      #
+      #   You may also use POSTGRES_HOST_AUTH_METHOD=trust to allow all
+      #   connections without a password. This is *not* recommended. See
+      #   PostgreSQL documentation about "trust"
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+
+volumes:
+  postgres:

@@ -1,0 +1,51 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+"psycopg2" = "*"
+APScheduler = "*"
+Flask = "*"
+Flask-Admin = "*"
+Flask-Login = "*"
+flask-cors = "*"
+Flask-JWT-Extended = "*"
+Flask-RESTful = "*"
+Flask-SQLAlchemy = "*"
+gunicorn = "*"
+python-dotenv = "*"
+flask-migrate = "*"
+flask-sendgrid = "*"
+sendgrid = "*"
+celery = "==4.3"
+boto3 = "*"
+redis = "*"
+xlrd = "==1.2.0"
+flask-marshmallow = "==0.11.0"
+marshmallow-sqlalchemy = "*"
+marshmallow = "*"
+enum34-custom = "*"
+python-slugify = "*"
+uwsgi = "*"
+flask-apscheduler = "*"
+requests = "*"
+marshmallow-enum = "*"
+pycrypto = "*"
+werkzeug = "==0.16.0"
+alembic = "==1.4.0"
+firebase-admin = "*"
+beautifulsoup4 = "*"
+html5lib = "*"
+pandas = "*"
+xlsxwriter = "*"
+mail-parser = "*"
+email-reply-parser = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
